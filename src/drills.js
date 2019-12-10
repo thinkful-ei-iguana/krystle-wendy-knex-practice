@@ -26,3 +26,18 @@ function shoppingListQuery(searchTerm) {
     });
 }
 shoppingListQuery("chili");
+
+function paginateItems(pageNumber){
+  const itemsPerPage = 6
+  const offset = itemsPerPage * (pageNumber -1 )
+  knexInstance
+  .select('name', 'price')
+  .from('shopping_list') 
+  .limit(itemsPerPage)
+  .offset(offset)
+  .then(result => {
+   console.log(result) 
+  })
+}
+
+paginateItems(2)
